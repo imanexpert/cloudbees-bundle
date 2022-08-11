@@ -1,1 +1,42 @@
-
+removeStrategy:
+  rbac: SYNC
+  items: NONE
+items:
+- kind: freeStyle
+  name: freestyle
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  concurrentBuild: false
+  description: ''
+  disabled: false
+  displayName: freestyle
+  scm:
+    none: {}
+  scmCheckoutStrategy:
+    standard: {}
+- kind: multibranch
+  name: multi-branch
+  description: ''
+  displayName: multi-branch
+  orphanedItemStrategy:
+    defaultOrphanedItemStrategy:
+      pruneDeadBranches: true
+      daysToKeep: -1
+      numToKeep: -1
+      abortBuilds: false
+  projectFactory:
+    workflowBranchProjectFactory:
+      scriptPath: Jenkinsfile
+  properties:
+  - envVars: {}
+- kind: pipeline
+  name: pipeline
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: ''
+  description: ''
+  disabled: false
+  displayName: pipeline
+  resumeBlocked: false
